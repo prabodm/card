@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lions Den Fitness Center - Alawwa</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #111;
+            background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Dark Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.95));
+            z-index: -1;
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        /* Profile Header */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-circle {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo-circle i {
+            font-size: 40px;
+            color: #111;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: #ccc;
+            font-size: 14px;
+            font-weight: 300;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* Link Sections */
+        .category-section {
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #FFD700;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* The Link Buttons */
+        .link-card {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 14px 20px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-card:hover {
+            transform: translateY(-2px) scale(1.01);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .link-card i {
+            font-size: 22px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin-right: 15px;
+            background: rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .link-card:hover i {
+            transform: scale(1.1);
+        }
+
+        .text-content {
+            flex: 1;
+        }
+
+        .title {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+
+        .desc {
+            font-size: 11px;
+            color: #aaa;
+        }
+
+        .arrow {
+            opacity: 0;
+            transition: 0.3s;
+            font-size: 12px;
+        }
+
+        .link-card:hover .arrow {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        /* Brand Colors */
+        .web i { color: #FFD700; text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+        .yt i { color: #FF0000; text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+        .insta i { color: #E4405F; text-shadow: 0 0 10px rgba(228, 64, 95, 0.5); }
+        .fb i { color: #1877F2; text-shadow: 0 0 10px rgba(24, 119, 242, 0.5); }
+        .wa i { color: #25D366; text-shadow: 0 0 10px rgba(37, 211, 102, 0.5); }
+        .tt i { color: #00f2ea; text-shadow: 0 0 10px rgba(0, 242, 234, 0.5); }
+        .phone i { color: #ffffff; }
+
+        /* WhatsApp CTA */
+        .wa-card {
+            background: linear-gradient(90deg, rgba(37, 211, 102, 0.1), rgba(0,0,0,0.4));
+            border: 1px solid rgba(37, 211, 102, 0.3);
+        }
+        .wa-card .title { color: #25D366; font-weight: 700; }
+
+        .pulse-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(37, 211, 102, 0.1);
+            animation: pulse 2s infinite;
+            z-index: -1;
+            border-radius: 12px;
+        }
+
+        /* Owner Section */
+        .owner-section .section-title { color: #fff; }
+        .owner-section .link-card {
+            background: rgba(255, 215, 0, 0.05);
+            border-color: rgba(255, 215, 0, 0.2);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.02); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        /* --- SCROLL ANIMATION LOGIC --- */
+        
+        /* 1. Base State (Hidden): Down 30px and Invisible */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s cubic-bezier(0.5, 0, 0, 1), 
+                        transform 0.6s cubic-bezier(0.5, 0, 0, 1);
+            
+            /* Immediate transition when hiding (scrolling up/out) */
+            transition-delay: 0s; 
+        }
+
+        /* 2. Active State (Visible): Normal position and Visible */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 3. Stagger Delays (Only applied when BECOMING active) */
+        /* We use nth-child logic here. Note: This counts all elements inside the container */
+        
+        /* Category Titles appear fast */
+        .category-section:nth-child(2) .reveal { transition-delay: 0s; }
+        .category-section:nth-child(3) .reveal { transition-delay: 0.1s; }
+        .category-section:nth-child(4) .reveal { transition-delay: 0.2s; }
+        .category-section:nth-child(5) .reveal { transition-delay: 0.3s; }
+
+        /* Link cards staggered appearance */
+        /* Note: We target the specific items to ensure smooth cascade */
+        
+        /* Hub Section */
+        .category-section:nth-child(2) .link-card.reveal.active { transition-delay: 0.1s; }
+        
+        /* Social Section */
+        .category-section:nth-child(3) .link-card:nth-of-type(1).reveal.active { transition-delay: 0.1s; }
+        .category-section:nth-child(3) .link-card:nth-of-type(2).reveal.active { transition-delay: 0.2s; }
+        .category-section:nth-child(3) .link-card:nth-of-type(3).reveal.active { transition-delay: 0.3s; }
+
+        /* Owner Section */
+        .category-section:nth-child(4) .link-card:nth-of-type(1).reveal.active { transition-delay: 0.1s; }
+        .category-section:nth-child(4) .link-card:nth-of-type(2).reveal.active { transition-delay: 0.2s; }
+        .category-section:nth-child(4) .link-card:nth-of-type(3).reveal.active { transition-delay: 0.3s; }
+        .category-section:nth-child(4) .link-card:nth-of-type(4).reveal.active { transition-delay: 0.4s; }
+
+        /* Chat Section */
+        .category-section:nth-child(5) .link-card.reveal.active { transition-delay: 0.1s; }
+
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            font-size: 11px;
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            width: 100%;
+        }
+
+        .creator-link {
+            color: #E4405F;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .creator-link:hover { color: #fff; }
+
+        @media (max-width: 400px) {
+            h1 { font-size: 22px; }
+            .link-card { padding: 12px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Profile Header -->
+        <!-- Added reveal class here too -->
+        <header class="profile-header reveal">
+            <div class="logo-circle">
+                <i class="fas fa-dumbbell"></i>
+            </div>
+            <h1>Lions Den Fitness</h1>
+            <div class="subtitle">
+                <i class="fas fa-map-marker-alt" style="margin-right: 5px; font-size: 10px;"></i>
+                Alawwa, Sri Lanka
+            </div>
+        </header>
+
+        <!-- Category: Main Website -->
+        <div class="category-section">
+            <div class="section-title reveal">
+                <i class="fas fa-crown"></i> Main Hub
+            </div>
+            <a href="https://lionsden.page.gd/?i=1" target="_blank" class="link-card web reveal">
+                <i class="fas fa-globe"></i>
+                <div class="text-content">
+                    <div class="title">Official Website</div>
+                    <div class="desc">Membership Plans, Schedules & Info</div>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+        </div>
+
+        <!-- Category: Social Media (Gym) -->
+        <div class="category-section">
+            <div class="section-title reveal">
+                <i class="fas fa-users"></i> Our Social Media
+            </div>
+
+            <a href="https://youtube.com/@LionsDenFitnessCenter?si=8HeA8gY2kLXcefIW" target="_blank" class="link-card yt reveal">
+                <i class="fab fa-youtube"></i>
+                <div class="text-content">
+                    <div class="title">YouTube Channel</div>
+                    <div class="desc">Workout guides & gym tips</div>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+
+            <a href="https://www.instagram.com/ldf.itness_alawwa?igsh=MXZ4bjZzZGc2M3ZrZA%3D%3D&utm_source=qr" target="_blank" class="link-card insta reveal">
+                <i class="fab fa-instagram"></i>
+                <div class="text-content">
+                    <div class="title">Instagram</div>
+                    <div class="desc">Photos, Stories & Updates</div>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+
+            <a href="https://www.facebook.com/LionsDenFitnessAlawwa?mibextid=LQQJ4d" target="_blank" class="link-card fb reveal">
+                <i class="fab fa-facebook-f"></i>
+                <div class="text-content">
+                    <div class="title">Facebook Page</div>
+                    <div class="desc">News, events & community</div>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+        </div>
+
+                <!-- Category: Community Chat -->
+        <div class="category-section">
+            <div class="section-title reveal">
+                <i class="fas fa-comment-dots"></i> Community Chat
+            </div>
+
+            <a href="https://chat.whatsapp.com/Em68URr7f6yGsYeRqPuUWE?mode=gi_t" target="_blank" class="link-card wa-card wa reveal">
+                <div class="pulse-bg"></div>
+                <i class="fab fa-whatsapp"></i>
+                <div class="text-content">
+                    <div class="title">Join WhatsApp Group</div>
+                    <div class="desc">Chat live with the team</div>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+        </div>
+
+        <!-- Category: Owner Section -->
+        <div class="category-section owner-section">
+            <div class="section-title reveal">
+                <i class="fas fa-user-tie"></i> Meet The Owner
+            </div>
+
+            <a href="tel:+94712628585" class="link-card phone reveal">
+                <i class="fas fa-phone-alt"></i>
+                <div class="text-content">
+                    <div class="title">Call Now</div>
+                    <div class="desc">+94 71 262 8585</div>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+
+            <a href="https://www.instagram.com/naleenjayawardhana/" target="_blank" class="link-card insta reveal">
+                <i class="fab fa-instagram"></i>
+                <div class="text-content">
+                    <div class="title">Naleen Jayawardhana</div>
+                    <div class="desc">Follow on Instagram</div>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+
+            <a href="https://web.facebook.com/naleen.jayawardhana.2025" target="_blank" class="link-card fb reveal">
+                <i class="fab fa-facebook-f"></i>
+                <div class="text-content">
+                    <div class="title">Naleen Jayawardhana</div>
+                    <div class="desc">Add friend on Facebook</div>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+
+            <a href="https://www.tiktok.com/@naleenjayawardhan" target="_blank" class="link-card tt reveal">
+                <i class="fab fa-tiktok"></i>
+                <div class="text-content">
+                    <div class="title">Naleen Jayawardhana</div>
+                    <div class="desc">Follow on TikTok</div>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+        </div>
+
+
+
+        <footer class="reveal">
+            &copy; 2026 Lions Den Fitness Center<br>
+            <span style="opacity: 0.7;">Created by <a href="https://www.instagram.com/_prabod_/" target="_blank" class="creator-link">_prabod_</a></span>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript for Scroll Animation -->
+    <script>
+        const revealElements = document.querySelectorAll('.reveal');
+        const windowHeight = window.innerHeight;
+
+        // Function to check scroll position
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                const revealPoint = 100; // Pixels from top/bottom to trigger
+
+                // Check if element is inside the viewport
+                // 1. Top of element is inside the lower reveal point
+                // 2. Bottom of element is inside the upper reveal point
+                if (elementTop < windowHeight - revealPoint && elementBottom > revealPoint) {
+                    element.classList.add('active');
+                } else {
+                    // Remove class to animate OUT when scrolling away
+                    element.classList.remove('active');
+                }
+            });
+        };
+
+        // Add event listeners
+        window.addEventListener('scroll', revealOnScroll);
+        
+        // Initial check on load
+        revealOnScroll();
+    </script>
+
+</body>
+</html>
